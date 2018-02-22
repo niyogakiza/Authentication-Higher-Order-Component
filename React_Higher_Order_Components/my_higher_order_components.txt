@@ -1,0 +1,55 @@
+.Higher order components
+-------------------------
+- Is react component that add some additional functionality or behavior to an existing component
+that you already use or use for the future.
+- So we take higher Order Component we combine it with normal component then we get what is called
+Enhanced or Composed Component.
+- When we add higher order component to normal component means that we are adding additional functionality
+or data.
+- Is used where we can centralize the logic of multiple components.
+- Are used wit third party library like react-redux
+
+.What is a Provider
+-------------------
+- Provider :
+------------
+ holds Redux Store and tells it to inform it on each changes, then when changes happened,
+provider will send them to connected components via connect, then the changes will be rendered by the
+other components that are connected to it. so provider is the only that has the access on redux-store.
+* Redux Store:
+---------------
+ holds global applications states formed by different reducers
+* connect :
+------------
+ connects different  child components, connect is higher order component that is used
+to communicate with provider on the top of our application. then add additional data to other components that
+are connected to it.
+
+Authentication User login Flow
+==============================
+.ResourcesList Component + .Require_auth HOC = Composed Component that will check authentication
+status before rendering.
+.Router is top level object however url is updated  informs it's child Route to render in different components
+.browserHistory is the one to tell Router to keep track the url
+.1 user clicks sign in  button then Authenticate action creator returns the type of change_auth with
+payload true, then authentication reducer returns whatever action.payload is.. if is true it creates
+new app state with authenticated true then new auth state flows into app, causing header to rerender.
+
+
+Authentication State
+====================
+.{authenticated:false} => user is not logged in user should be able to sign in => action creator call: this.props.authenticate(true)
+.{authenticated: true} => user is logged in. Give ability to sign out => action creator call: this.props.authenticated(false)
+
+HOC: HIGHER ORDER COMPONENT
+.how to use it:
+- We import Authentication
+- We import Resources
+- We say const ComposedComponent = Authentication(Resources)
+- Then is some render methods we use it like <ComposedComponent/> which has the composition if Authentication and Resources
+*NB: A higher order component is a function  that is called with existing component
+- To know if user are authenticated we just need to connect our authentication class to our redux store
+when we do that we pull off authenticated properties then if they are currently authenticated, we can
+late Authentication  component render
+.ContextTypes: are like PropsTypes but allows us to skip levels
+
